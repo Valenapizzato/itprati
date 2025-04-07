@@ -2,27 +2,45 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>ITpraTI</title>
+    <title>ITpraTI - Conectando Talentos de TI</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <header>
+<header>
+    <div class="container">
         <h1><span class="highlight">IT</span>pra<span class="highlight">TI</span></h1>
         <nav>
-            <a href="{{ url_for('cadastro_estagiario') }}">Cadastro de Estagiário</a>
-            <a href="{{ url_for('cadastro_empresa') }}">Cadastro de Empresa</a>
+            <a href="{{ url_for('home') }}">Início</a>
+            <a href="{{ url_for('cadastro_estagiario') }}">Sou Estudante</a>
+            <a href="{{ url_for('cadastro_empresa') }}">Sou Empresa</a>
             <a href="{{ url_for('admin') }}">Admin</a>
         </nav>
-    </header>
-    <main>
-        <section class="banner">
-            <h2>Transformamos estagiários de TI em profissionais prontos para o mercado</h2>
-            <p>Conectamos talentos em TI às melhores oportunidades de estágio.</p>
-            <div>
-                <a class="btn" href="{{ url_for('cadastro_estagiario') }}">Sou estudante</a>
-                <a class="btn" href="{{ url_for('cadastro_empresa') }}">Sou empresa</a>
-            </div>
-        </section>
-    </main>
+    </div>
+</header>
+<main class="container">
+    <section class="hero">
+        <h2>Transformamos estagiários de TI em profissionais prontos para o mercado</h2>
+        <p>Conectamos talentos da área de tecnologia com empresas que precisam deles.</p>
+        <div class="cta-buttons">
+            <a href="{{ url_for('cadastro_estagiario') }}" class="btn">Quero uma vaga</a>
+            <a href="{{ url_for('cadastro_empresa') }}" class="btn btn-outline">Quero contratar</a>
+        </div>
+    </section>
+
+    <section class="cursos-udemy">
+        <h3>📚 Cursos Recomendados</h3>
+        <p>Aumente suas chances no mercado com essas formações:</p>
+        <ul>
+            <li><a href="https://www.udemy.com/course/python-3-do-zero-ao-avancado/" target="_blank">Curso de Python 3 - Udemy</a></li>
+            <li><a href="https://www.udemy.com/course/curso-web-html/" target="_blank">Desenvolvimento Web com HTML e CSS</a></li>
+            <li><a href="https://www.udemy.com/course/javascript-do-zero/" target="_blank">JavaScript do Zero ao Avançado</a></li>
+        </ul>
+    </section>
+</main>
+<footer>
+    <div class="container">
+        <p>&copy; 2025 ITpraTI. Conectando futuros profissionais de tecnologia.</p>
+    </div>
+</footer>
 </body>
 </html>
