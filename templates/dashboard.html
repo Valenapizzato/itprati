@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<main class="container">
+    <h1>Painel Admin</h1>
+    <a href="{{ url_for('logout') }}" class="btn btn-outline">Sair</a>
+
+    <section>
+        <h2>Estagiários</h2>
+        <ul>
+        {% for e in estagiarios %}
+            <li><strong>{{ e.nome }}</strong> – {{ e.email }}</li>
+        {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Empresas</h2>
+        <ul>
+        {% for e in empresas %}
+            <li><strong>{{ e.nome_empresa }}</strong> – {{ e.email }}</li>
+        {% endfor %}
+        </ul>
+    </section>
+</main>
+</body>
+</html>

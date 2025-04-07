@@ -82,4 +82,16 @@ footer {
     font-weight: bold;
     text-align: center;
     margin-top: 20px;
+}.styled-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+.styled-form input,
+.styled-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
 }

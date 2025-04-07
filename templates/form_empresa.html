@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Empresa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<main class="container">
+    <h1>Cadastro de Empresa</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <p class="flash">{{ messages[0] }}</p>
+        {% endif %}
+    {% endwith %}
+    <form method="post" class="styled-form">
+        <input name="nome_empresa" placeholder="Nome da empresa" required>
+        <input name="cnpj" placeholder="CNPJ" required>
+        <input name="responsavel" placeholder="Nome do responsável" required>
+        <input name="email" type="email" placeholder="E-mail" required>
+        <input name="telefone" placeholder="Telefone" required>
+        <textarea name="requisitos" placeholder="Requisitos desejados, tipo de contrato e benefícios" required></textarea>
+        <textarea name="cursos" placeholder="Capacidades e cursos exigidos (opcional)"></textarea>
+        <input name="endereco" placeholder="Endereço da empresa (opcional)">
+        <button type="submit" class="btn">Enviar</button>
+    </form>
+</main>
+</body>
+</html>
