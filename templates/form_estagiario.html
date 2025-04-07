@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Estagiário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Cadastro de Estagiário</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash">{{ messages[0] }}</ul>
+        {% endif %}
+    {% endwith %}
+    <form method="post" enctype="multipart/form-data">
+        <input name="nome" placeholder="Nome completo"><br>
+        <input name="data_nascimento" type="date" placeholder="Data de nascimento"><br>
+        <input name="email" placeholder="Email"><br>
+        <input name="telefone" placeholder="Telefone"><br>
+        <input name="cidade_estado" placeholder="Cidade/Estado"><br>
+        <input name="curso" placeholder="Curso"><br>
+        <input name="instituicao" placeholder="Instituição de ensino"><br>
+        <input name="disponibilidade" placeholder="Disponibilidade de horários"><br>
+        <input name="github" placeholder="Link do GitHub/Portfólio"><br>
+        <label>Currículo (opcional): <input type="file" name="curriculo"></label><br>
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

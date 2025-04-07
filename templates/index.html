@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>ITpraTI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1><span class="highlight">IT</span>pra<span class="highlight">TI</span></h1>
+        <nav>
+            <a href="{{ url_for('cadastro_estagiario') }}">Cadastro de Estagiário</a>
+            <a href="{{ url_for('cadastro_empresa') }}">Cadastro de Empresa</a>
+            <a href="{{ url_for('admin') }}">Admin</a>
+        </nav>
+    </header>
+    <main>
+        <section class="banner">
+            <h2>Transformamos estagiários de TI em profissionais prontos para o mercado</h2>
+            <p>Conectamos talentos em TI às melhores oportunidades de estágio.</p>
+            <div>
+                <a class="btn" href="{{ url_for('cadastro_estagiario') }}">Sou estudante</a>
+                <a class="btn" href="{{ url_for('cadastro_empresa') }}">Sou empresa</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
