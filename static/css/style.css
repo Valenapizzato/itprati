@@ -121,3 +121,36 @@ header nav a {
     padding: 20px;
     border-radius: 10px;
 }
+.hero-banner {
+    background: url('../img/banner.jpg') center center no-repeat;
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+    color: white;
+}
+.banner-overlay {
+    background: rgba(0,0,0,0.6);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+.banner-text h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+.banner-text p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+.logo {
+    font-size: 1.8em;
+}

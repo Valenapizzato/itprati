@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-<header>
-    <div class="container">
-        <h1><span class="highlight">IT</span>pra<span class="highlight">TI</span></h1>
+<header class="header">
+    <div class="container nav-bar">
+        <h1 class="logo"><span class="highlight">IT</span>pra<span class="highlight">TI</span></h1>
         <nav>
             <a href="#sobre">Sobre</a>
             <a href="#como-funciona">Como Funciona</a>
@@ -20,26 +20,29 @@
         </nav>
     </div>
 </header>
-<main class="container">
-    <section class="banner">
-        <div class="banner-content">
+
+<section class="hero-banner">
+    <div class="banner-overlay">
+        <div class="banner-text">
             <h2>Transformamos estagiários de TI em profissionais prontos para o mercado</h2>
-            <p>Conectamos talentos da área de tecnologia com empresas que precisam deles.</p>
+            <p>Conectamos talentos em tecnologia com oportunidades reais de estágio.</p>
             <div class="cta-buttons">
-                <a href="{{ url_for('cadastro_estagiario') }}" class="btn">Quero uma vaga</a>
-                <a href="{{ url_for('cadastro_empresa') }}" class="btn btn-outline">Quero contratar</a>
+                <a href="{{ url_for('cadastro_estagiario') }}" class="btn">Sou Estudante</a>
+                <a href="{{ url_for('cadastro_empresa') }}" class="btn btn-outline">Sou Empresa</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
+<main class="container">
     <section id="sobre">
         <h3>Sobre o ITpraTI</h3>
-        <p>Somos uma ponte entre estudantes de tecnologia e o mercado de trabalho. Ajudamos você a se desenvolver e se posicionar.</p>
+        <p>Somos uma ponte entre estudantes de tecnologia e o mercado de trabalho. Ajudamos você a se desenvolver e se posicionar com confiança.</p>
     </section>
 
     <section id="como-funciona">
         <h3>Como Funciona</h3>
-        <p>Empresas postam vagas. Estudantes se cadastram. Conectamos perfis ideais com base em habilidades e potencial.</p>
+        <p>Empresas postam vagas, estudantes se inscrevem, e nossa plataforma faz a ponte entre os perfis ideais com base em habilidades, desafios técnicos e fit cultural.</p>
     </section>
 
     <section id="cursos" class="cursos-udemy">
@@ -53,9 +56,10 @@
 
     <section id="contato">
         <h3>Fale Conosco</h3>
-        <p>Precisa de ajuda? Envie um e-mail para <strong>itpratiestagios@gmail.com</strong></p>
+        <p>Dúvidas ou sugestões? Envie um e-mail para <strong>itpratiestagios@gmail.com</strong></p>
     </section>
 </main>
+
 <footer>
     <div class="container">
         <p>&copy; 2025 ITpraTI. Conectando futuros profissionais de tecnologia.</p>
