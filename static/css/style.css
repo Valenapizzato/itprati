@@ -1,100 +1,80 @@
+
 body {
-    font-family: 'Segoe UI', sans-serif;
     margin: 0;
-    background: #ffffff;
-    color: #333;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #222;
 }
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-.transparent-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    background: transparent;
-    color: white;
-}
-.nav-bar {
+
+.navbar {
+    background-color: #f0f0f0;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
 }
-.logo {
-    font-size: 1.8em;
+
+.navbar h1 {
+    font-size: 1.8rem;
+    color: #003366;
 }
-nav a {
-    margin-left: 20px;
-    color: white;
+
+.navbar .highlight {
+    color: #007BFF;
+}
+
+.navbar nav a {
+    margin-left: 1.5rem;
     text-decoration: none;
+    color: #333;
     font-weight: bold;
 }
-.hero-banner.fullscreen-banner {
-    background: url('../img/banner.jpg') center center no-repeat;
-    background-size: cover;
+
+.header-banner {
+    background: url('../img/banner.jpg') no-repeat center center/cover;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    color: white;
     position: relative;
+    z-index: 1;
 }
-.banner-overlay {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 40px;
-    border-radius: 10px;
-    text-align: center;
+
+.banner-text {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 800px;
 }
-.banner-text h2 {
-    font-size: 2.5em;
-    color: white;
-    margin-bottom: 15px;
+
+.banner-text h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
 }
-.banner-text p {
-    font-size: 1.2em;
-    color: #f0f0f0;
-    margin-bottom: 25px;
+
+.banner-buttons {
+    margin-top: 1rem;
 }
+
 .btn {
-    background: #3399ff;
+    background-color: #007BFF;
     color: white;
-    padding: 12px 24px;
-    border-radius: 5px;
+    padding: 0.7rem 1.2rem;
     text-decoration: none;
-    margin: 0 10px;
+    border-radius: 6px;
+    margin: 0 0.5rem;
+    display: inline-block;
 }
-.btn-outline {
-    background: transparent;
-    border: 2px solid #3399ff;
-    color: #3399ff;
-}
-.main-content {
-    background: white;
-    padding: 60px 0;
-}
-section {
-    margin-bottom: 50px;
-}
-.cursos-udemy ul {
-    list-style: none;
-    padding: 0;
-}
-.cursos-udemy li {
-    margin: 10px 0;
-}
-footer {
-    background: #f2f2f2;
-    text-align: center;
-    padding: 20px 0;
-    font-size: 0.9em;
-}
-a {
-    color: #0066cc;
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
+
+@media (max-width: 768px) {
+    .banner-text h1 {
+        font-size: 2rem;
+    }
+    .btn {
+        display: block;
+        margin: 1rem auto;
+    }
 }

@@ -1,69 +1,48 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>ITpraTI - Conectando Talentos de TI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITpraTI</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-<header class="header transparent-header">
-    <div class="container nav-bar">
-        <h1 class="logo"><span class="highlight">IT</span>pra<span class="highlight">TI</span></h1>
+    <header class="navbar">
+        <h1>IT<span class="highlight">pra</span>TI</h1>
         <nav>
-            <a href="#funciona">Como Funciona</a>
-            <a href="#conheca">Conheça</a>
+            <a href="#como-funciona">Como Funciona</a>
             <a href="#cursos">Cursos</a>
             <a href="#contato">Contato</a>
-            <a href="{{ url_for('cadastro_estagiario') }}">Sou Estudante</a>
-            <a href="{{ url_for('cadastro_empresa') }}">Sou Empresa</a>
-            <a href="{{ url_for('admin') }}">Admin</a>
         </nav>
-    </div>
-</header>
+    </header>
 
-<section class="hero-banner fullscreen-banner">
-    <div class="banner-overlay">
+    <section class="header-banner">
         <div class="banner-text">
-            <h2>Transformamos estagiários de TI em<br>profissionais prontos para o mercado</h2>
-            <p>Conectamos estudantes e empresas com oportunidades reais em tecnologia.</p>
-            <div class="cta-buttons">
-                <a href="{{ url_for('cadastro_estagiario') }}" class="btn">Sou Estudante</a>
-                <a href="{{ url_for('cadastro_empresa') }}" class="btn btn-outline">Sou Empresa</a>
+            <h1>Transformamos estagiários de TI em profissionais prontos para o mercado</h1>
+            <p>Pronta para se desenvolver ou contratar novos talentos</p>
+            <div class="banner-buttons">
+                <a href="/form_estudante" class="btn">Sou Estudante</a>
+                <a href="/form_empresa" class="btn">Sou Empresa</a>
             </div>
         </div>
-    </div>
-</section>
-
-<main class="container main-content">
-    <section id="funciona">
-        <h3>🛠️ Como Funciona</h3>
-        <p>Empresas postam vagas, estudantes se inscrevem, e nossa plataforma conecta os perfis ideais com base em habilidades, soft skills e objetivos de carreira.</p>
     </section>
 
-    <section id="conheca">
-        <h3>💡 Conheça o ITpraTI</h3>
-        <p>Somos uma ponte entre o aprendizado técnico e a experiência prática no mercado de trabalho. Nossa missão é transformar estudantes em profissionais preparados e confiantes.</p>
+    <section id="como-funciona">
+        <h2>Como Funciona</h2>
+        <p>Conectamos estudantes e empresas com oportunidades reais em tecnologia.</p>
     </section>
 
-    <section id="cursos" class="cursos-udemy">
-        <h3>📚 Cursos Recomendados</h3>
+    <section id="cursos">
+        <h2>Cursos Recomendados</h2>
         <ul>
-            <li><a href="https://www.udemy.com/course/python-3-do-zero-ao-avancado/" target="_blank">Curso de Python 3 - Udemy</a></li>
-            <li><a href="https://www.udemy.com/course/curso-web-html/" target="_blank">Desenvolvimento Web com HTML e CSS</a></li>
-            <li><a href="https://www.udemy.com/course/javascript-do-zero/" target="_blank">JavaScript do Zero ao Avançado</a></li>
+            <li><a href="#">Curso de Python 3 · Udemy</a></li>
+            <li><a href="#">Desenvolvimento Web Com HTML e CSS</a></li>
         </ul>
     </section>
 
-    <section id="contato">
-        <h3>📬 Fale Conosco</h3>
-        <p>Precisa de ajuda? Envie um e-mail para<br><a href="mailto:itpratiestagios@gmail.com">📧 itpratiestagios@gmail.com</a></p>
-    </section>
-</main>
-
-<footer>
-    <div class="container">
-        <p>&copy; 2025 ITpraTI. Conectando futuros profissionais de tecnologia.</p>
-    </div>
-</footer>
+    <footer id="contato">
+        <p>© 2025 ITpraTI. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>
