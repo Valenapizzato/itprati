@@ -10,6 +10,10 @@
     <div class="container nav-bar">
         <h1 class="logo"><span class="highlight">IT</span>pra<span class="highlight">TI</span></h1>
         <nav>
+            <a href="#funciona">Como Funciona</a>
+            <a href="#conheca">Conheça</a>
+            <a href="#cursos">Cursos</a>
+            <a href="#contato">Contato</a>
             <a href="{{ url_for('cadastro_estagiario') }}">Sou Estudante</a>
             <a href="{{ url_for('cadastro_empresa') }}">Sou Empresa</a>
             <a href="{{ url_for('admin') }}">Admin</a>
@@ -30,5 +34,36 @@
     </div>
 </section>
 
+<main class="container main-content">
+    <section id="funciona">
+        <h3>Como Funciona</h3>
+        <p>Empresas postam vagas, estudantes se inscrevem, e nossa plataforma conecta os perfis ideais com base em habilidades, soft skills e objetivos de carreira.</p>
+    </section>
+
+    <section id="conheca">
+        <h3>Conheça o ITpraTI</h3>
+        <p>Somos uma ponte entre o aprendizado técnico e a experiência prática no mercado de trabalho. Nossa missão é transformar estudantes em profissionais preparados e confiantes.</p>
+    </section>
+
+    <section id="cursos" class="cursos-udemy">
+        <h3>📚 Cursos Recomendados</h3>
+        <ul>
+            <li><a href="https://www.udemy.com/course/python-3-do-zero-ao-avancado/" target="_blank">Curso de Python 3 - Udemy</a></li>
+            <li><a href="https://www.udemy.com/course/curso-web-html/" target="_blank">Desenvolvimento Web com HTML e CSS</a></li>
+            <li><a href="https://www.udemy.com/course/javascript-do-zero/" target="_blank">JavaScript do Zero ao Avançado</a></li>
+        </ul>
+    </section>
+
+    <section id="contato">
+        <h3>Fale Conosco</h3>
+        <p>Precisa de ajuda? Envie um e-mail para <strong>itpratiestagios@gmail.com</strong></p>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 ITpraTI. Conectando futuros profissionais de tecnologia.</p>
+    </div>
+</footer>
 </body>
 </html>
