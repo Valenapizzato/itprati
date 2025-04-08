@@ -91,3 +91,10 @@ footer {
     padding: 20px 0;
     font-size: 0.9em;
 }
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
