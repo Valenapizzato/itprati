@@ -7,11 +7,13 @@
 </head>
 <body>
     <h1>Cadastro de Estagiário</h1>
-    <form action="/formulario-estagiario" method="post">
-        <label>Nome completo:</label><br>
-        <input type="text" name="nome"><br>
-        <label>Email:</label><br>
-        <input type="email" name="email"><br>
+    <form method="post">
+        <label>Nome:</label><input type="text" name="nome"><br>
+        <label>Email:</label><input type="email" name="email"><br>
+        <label>Curso:</label><input type="text" name="curso"><br>
+        <label>Soft Skills:</label><br>
+        <input type="checkbox" name="soft_skills" value="Comunicação"> Comunicação<br>
+        <input type="checkbox" name="soft_skills" value="Trabalho em equipe"> Trabalho em equipe<br>
         <input type="submit" value="Enviar">
     </form>
 </body>
