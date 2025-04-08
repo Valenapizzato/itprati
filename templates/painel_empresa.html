@@ -1,0 +1,29 @@
+<!-- templates/painel_empresa.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel da Empresa</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="navbar">
+  <h1 class="logo">ITpraTI</h1>
+  <nav>
+    <a href="/">Início</a>
+    <a href="/logout">Sair</a>
+  </nav>
+</header>
+<div class="form-container">
+  <h2>Bem-vindo, {{ empresa }}</h2>
+  <p><strong>Email:</strong> {{ email }}</p>
+  <p><strong>Responsável:</strong> {{ responsavel }}</p>
+
+  <h3>Estagiários Inscritos</h3>
+  <ul>
+    <li><strong>Ana Silva</strong> - Desenvolvimento Web<br>Status: <select><option>Em análise</option><option>Entrevista</option><option>Contratado</option></select></li>
+    <li><strong>João Martins</strong> - Banco de Dados<br>Status: <select><option>Em análise</option><option>Entrevista</option><option>Contratado</option></select></li>
+  </ul>
+</div>
+</body>
+</html>

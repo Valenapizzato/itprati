@@ -67,6 +67,28 @@ def portal_estudante():
 @app.route('/portal-empresa')
 def portal_empresa():
     return render_template('portal_empresa.html')
+@app.route('/login-estudante', methods=['GET', 'POST'])
+def login_estudante():
+    if request.method == 'POST':
+        email = request.form['email']
+        senha = request.form['senha']
+        # Simulação
+        if email == 'estudante@itprati.com' and senha == '123':
+            return render_template('painel_estudante.html', nome="Estudante Exemplo", email=email, curso="ADS", instituicao="IFPR")
+        else:
+            return render_template('login_estudante.html', erro='Dados incorretos.')
+    return render_template('login_estudante.html')
+
+@app.route('/login-empresa', methods=['GET', 'POST'])
+def login_empresa():
+    if request.method == 'POST':
+        email = request.form['email']
+        senha = request.form['senha']
+        if email == 'empresa@itprati.com' and senha == '123':
+            return render_template('painel_empresa.html', empresa="NetSystems", email=email, responsavel="Carlos Meira")
+        else:
+            return render_template('login_empresa.html', erro='Dados incorretos.')
+    return render_template('login_empresa.html')
 
 @app.route('/logout')
 def logout():

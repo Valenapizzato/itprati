@@ -1,7 +1,24 @@
+<!-- templates/portal_estudante.html -->
 <!DOCTYPE html>
-<html lang="pt-br"><head><meta charset="UTF-8"><title>Portal do Estudante</title>
-<link rel="stylesheet" href="/static/css/style.css"></head><body>
-<header class="navbar"><h1 class="logo">ITpraTI</h1><nav><a href="/">Início</a><a href="/logout">Sair</a></nav></header>
-<div class="form-container"><h2>Bem-vindo, Ana Souza</h2><section><h3>Seus Dados</h3><p><strong>Email:</strong> ana@email.com</p><p><strong>Curso:</strong> Análise e Desenvolvimento de Sistemas</p><p><strong>Instituição:</strong> IFPR</p><a href="#" class="btn">Editar dados</a></section>
-<section><h3>Candidaturas Realizadas</h3><ul><li>Vaga de Desenvolvedor Front-end - TechCorp (Status: Em Análise)</li><li>Vaga de Suporte Nível 1 - NetSystems (Status: Entrevista marcada)</li></ul></section></div>
-<footer><p>© 2025 ITpraTI. Conectando futuros profissionais de tecnologia.</p></footer></body></html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Portal do Estudante</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="navbar">
+    <h1 class="logo">ITpraTI</h1>
+    <nav>
+      <a href="/">Início</a>
+    </nav>
+  </header>
+  <div class="form-container">
+    <h2>Portal do Estudante</h2>
+    <p>Você já tem cadastro?</p>
+    <a href="/login-estudante" class="btn">Fazer Login</a>
+    <p>Ainda não é cadastrado?</p>
+    <a href="/formulario-estagiario" class="btn">Cadastrar-se</a>
+  </div>
+</body>
+</html>

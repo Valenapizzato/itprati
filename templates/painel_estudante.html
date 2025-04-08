@@ -1,0 +1,30 @@
+<!-- templates/painel_estudante.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel do Estudante</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="navbar">
+  <h1 class="logo">ITpraTI</h1>
+  <nav>
+    <a href="/">Início</a>
+    <a href="/logout">Sair</a>
+  </nav>
+</header>
+<div class="form-container">
+  <h2>Olá, {{ nome }}</h2>
+  <p><strong>Email:</strong> {{ email }}</p>
+  <p><strong>Curso:</strong> {{ curso }}</p>
+  <p><strong>Instituição:</strong> {{ instituicao }}</p>
+
+  <h3>Candidaturas Realizadas</h3>
+  <ul>
+    <li>Front-end - TechCorp (Status: Em análise)</li>
+    <li>Banco de Dados - NetSystems (Status: Entrevista marcada)</li>
+  </ul>
+</div>
+</body>
+</html>

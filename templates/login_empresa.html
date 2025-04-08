@@ -1,0 +1,22 @@
+<!-- templates/login_empresa.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Empresa</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="form-container">
+  <h2>Login da Empresa</h2>
+  {% if erro %}<p style="color:red">{{ erro }}</p>{% endif %}
+  <form method="post">
+    <label>Email:</label>
+    <input type="email" name="email" required>
+    <label>Senha:</label>
+    <input type="password" name="senha" required>
+    <input type="submit" value="Entrar">
+  </form>
+</div>
+</body>
+</html>
