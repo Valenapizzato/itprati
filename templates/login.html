@@ -1,19 +1,20 @@
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Login Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Login</h1>
-    {% if erro %}
-        <p style="color:red">{{ erro }}</p>
-    {% endif %}
+<div class="form-container">
+    <h1>Login do Administrador</h1>
+    {% if erro %}<p style="color:red">{{ erro }}</p>{% endif %}
     <form method="post">
-        <label>Usuário:</label><input type="text" name="usuario"><br>
-        <label>Senha:</label><input type="password" name="senha"><br>
+        <label>Usuário:</label><input type="text" name="usuario">
+        <label>Senha:</label><input type="password" name="senha">
         <input type="submit" value="Entrar">
     </form>
+</div>
 </body>
 </html>
