@@ -1,1 +1,46 @@
-<!-- Placeholder: form_empresa.html será preenchido na sequência real -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Empresa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="navbar">
+    <h1 class="logo">ITpraTI</h1>
+    <nav>
+        <a href="/">Início</a>
+        <a href="/formulario-estagiario">Sou Estudante</a>
+        <a href="/formulario-empresa">Sou Empresa</a>
+        <a href="/login">Admin</a>
+    </nav>
+</header>
+<div class="form-container">
+    <h1>Cadastro de Empresa</h1>
+    <form method="post">
+        <label>Nome da empresa:</label><input type="text" name="empresa" required>
+        <label>CNPJ:</label><input type="text" name="cnpj">
+        <label>Responsável pelo recrutamento:</label><input type="text" name="responsavel">
+        <label>Email:</label><input type="email" name="email" required>
+        <label>Telefone:</label><input type="text" name="telefone">
+        <label>Áreas de interesse:</label>
+        <select name="areas_interesse" multiple>
+            <option value="Desenvolvimento">Desenvolvimento</option>
+            <option value="Suporte">Suporte</option>
+            <option value="Infraestrutura">Infraestrutura</option>
+        </select>
+        <label>Requisitos desejados:</label><textarea name="requisitos" rows="3"></textarea>
+        <label>Tipo de contrato e benefícios:</label><textarea name="beneficios" rows="3"></textarea>
+        <label>Cursos/capacidades exigidas:</label><textarea name="cursos" rows="3"></textarea>
+        <label>Endereço da empresa:</label><input type="text" name="endereco">
+        <label>Modelo de trabalho:</label><br>
+        <input type="checkbox" name="modelo" value="Remoto"> Remoto
+        <input type="checkbox" name="modelo" value="Híbrido"> Híbrido
+        <input type="checkbox" name="modelo" value="Presencial"> Presencial<br>
+        <input type="submit" value="Enviar">
+    </form>
+</div>
+<footer>© 2025 ITpraTI. Conectando futuros profissionais de tecnologia.</footer>
+</body>
+</html>
