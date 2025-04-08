@@ -95,3 +95,29 @@ footer {
     border-radius: 4px;
     font-family: inherit;
 }
+header nav a {
+    color: #3399ff;
+}
+.highlight {
+    color: #3399ff;
+}
+.btn {
+    background: #3399ff;
+}
+.btn-outline {
+    border-color: #3399ff;
+    color: #3399ff;
+}
+.banner {
+    background: url('../img/banner.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+}
+.banner-content {
+    background: rgba(0, 0, 0, 0.6);
+    display: inline-block;
+    padding: 20px;
+    border-radius: 10px;
+}

@@ -10,7 +10,10 @@
     <div class="container">
         <h1><span class="highlight">IT</span>pra<span class="highlight">TI</span></h1>
         <nav>
-            <a href="{{ url_for('home') }}">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#como-funciona">Como Funciona</a>
+            <a href="#cursos">Cursos</a>
+            <a href="#contato">Contato</a>
             <a href="{{ url_for('cadastro_estagiario') }}">Sou Estudante</a>
             <a href="{{ url_for('cadastro_empresa') }}">Sou Empresa</a>
             <a href="{{ url_for('admin') }}">Admin</a>
@@ -18,23 +21,39 @@
     </div>
 </header>
 <main class="container">
-    <section class="hero">
-        <h2>Transformamos estagiários de TI em profissionais prontos para o mercado</h2>
-        <p>Conectamos talentos da área de tecnologia com empresas que precisam deles.</p>
-        <div class="cta-buttons">
-            <a href="{{ url_for('cadastro_estagiario') }}" class="btn">Quero uma vaga</a>
-            <a href="{{ url_for('cadastro_empresa') }}" class="btn btn-outline">Quero contratar</a>
+    <section class="banner">
+        <div class="banner-content">
+            <h2>Transformamos estagiários de TI em profissionais prontos para o mercado</h2>
+            <p>Conectamos talentos da área de tecnologia com empresas que precisam deles.</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('cadastro_estagiario') }}" class="btn">Quero uma vaga</a>
+                <a href="{{ url_for('cadastro_empresa') }}" class="btn btn-outline">Quero contratar</a>
+            </div>
         </div>
     </section>
 
-    <section class="cursos-udemy">
+    <section id="sobre">
+        <h3>Sobre o ITpraTI</h3>
+        <p>Somos uma ponte entre estudantes de tecnologia e o mercado de trabalho. Ajudamos você a se desenvolver e se posicionar.</p>
+    </section>
+
+    <section id="como-funciona">
+        <h3>Como Funciona</h3>
+        <p>Empresas postam vagas. Estudantes se cadastram. Conectamos perfis ideais com base em habilidades e potencial.</p>
+    </section>
+
+    <section id="cursos" class="cursos-udemy">
         <h3>📚 Cursos Recomendados</h3>
-        <p>Aumente suas chances no mercado com essas formações:</p>
         <ul>
             <li><a href="https://www.udemy.com/course/python-3-do-zero-ao-avancado/" target="_blank">Curso de Python 3 - Udemy</a></li>
             <li><a href="https://www.udemy.com/course/curso-web-html/" target="_blank">Desenvolvimento Web com HTML e CSS</a></li>
             <li><a href="https://www.udemy.com/course/javascript-do-zero/" target="_blank">JavaScript do Zero ao Avançado</a></li>
         </ul>
+    </section>
+
+    <section id="contato">
+        <h3>Fale Conosco</h3>
+        <p>Precisa de ajuda? Envie um e-mail para <strong>itpratiestagios@gmail.com</strong></p>
     </section>
 </main>
 <footer>
