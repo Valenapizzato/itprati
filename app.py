@@ -1,88 +1,87 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
-from werkzeug.utils import secure_filename
+from flask import Flask, render_template, request, redirect, url_for, session
+import csv
 import os
-from dotenv import load_dotenv
-from flask_mail import Mail, Message
 
 app = Flask(__name__)
-load_dotenv()
+app.secret_key = 'supersecret'
 
-app.secret_key = os.getenv("SECRET_KEY")
-UPLOAD_FOLDER = 'uploads'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# E-mail config
-app.config['MAIL_SERVER'] = os.getenv("MAIL_SERVER")
-app.config['MAIL_PORT'] = int(os.getenv("MAIL_PORT"))
-app.config['MAIL_USERNAME'] = os.getenv("MAIL_USERNAME")
-app.config['MAIL_PASSWORD'] = os.getenv("MAIL_PASSWORD")
-app.config['MAIL_USE_TLS'] = os.getenv("MAIL_USE_TLS") == "True"
-app.config['MAIL_USE_SSL'] = os.getenv("MAIL_USE_SSL") == "True"
-
-mail = Mail(app)
-
-# Simples "banco de dados"
-estagiarios = []
-empresas = []
+CSV_FILE = 'cadastros_estagiarios.csv'
 
 @app.route('/')
-def home():
-    return render_template('index.html')
+def index():
+    return redirect(url_for('formulario_estagiario'))
 
-@app.route('/cadastro-estagiario', methods=['GET', 'POST'])
-def cadastro_estagiario():
+@app.route('/formulario-estagiario', methods=['GET', 'POST'])
+def formulario_estagiario():
     if request.method == 'POST':
-        data = request.form.to_dict()
-        file = request.files.get("curriculo")
-        if file and file.filename:
-            filename = secure_filename(file.filename)
-            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            file.save(filepath)
-            data["curriculo"] = filename
-        estagiarios.append(data)
-        send_email("Novo cadastro de estagiário", str(data))
-        flash("Cadastro enviado com sucesso!")
-        return redirect(url_for('cadastro_estagiario'))
-    return render_template('form_estagiario.html')
+        nome = request.form['nome']
+        email = request.form['email']
+        curso = request.form['curso']
+        soft_skills = ', '.join(request.form.getlist('soft_skills'))
 
+        file_exists = os.path.isfile(CSV_FILE)
+        with open(CSV_FILE, 'a', newline='', encoding='utf-8') as csvfile:
+            writer = csv.writer(csvfile)
+            if not file_exists:
+                writer.writerow(['Nome', 'Email', 'Curso', 'Soft Skills'])
+            writer.writerow([nome, email, curso, soft_skills])
+
+        return render_template('confirmacao.html', nome=nome, email=email, curso=curso, soft_skills=soft_skills)
+    return render_template('formulario_estagiario.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        if request.form['usuario'] == 'admin' and request.form['senha'] == 'admin':
+            session['logado'] = True
+            return redirect(url_for('painel'))
+        else:
+            return render_template('login.html', erro='Usuário ou senha incorretos.')
+    return render_template('login.html')
+
+@app.route('/painel')
 @app.route('/cadastro-empresa', methods=['GET', 'POST'])
 def cadastro_empresa():
     if request.method == 'POST':
-        data = request.form.to_dict()
-        empresas.append(data)
-        send_email("Novo cadastro de empresa", str(data))
-        flash("Cadastro enviado com sucesso!")
-        return redirect(url_for('cadastro_empresa'))
-    return render_template('form_empresa.html')
+        empresa = request.form['empresa']
+        contato = request.form['contato']
+        email = request.form['email']
 
-@app.route('/admin', methods=['GET', 'POST'])
-def admin():
-    if request.method == 'POST':
-        if request.form['username'] == os.getenv("ADMIN_USER") and request.form['password'] == os.getenv("ADMIN_PASS"):
-            session['admin'] = True
-            return redirect(url_for('dashboard'))
-        flash("Login inválido.")
-    return render_template('login.html')
+        file_exists = os.path.isfile('cadastros_empresas.csv')
+        with open('cadastros_empresas.csv', 'a', newline='', encoding='utf-8') as csvfile:
+            writer = csv.writer(csvfile)
+            if not file_exists:
+                writer.writerow(['Empresa', 'Contato', 'Email'])
+            writer.writerow([empresa, contato, email])
 
-@app.route('/dashboard')
-def dashboard():
-    if not session.get('admin'):
-        return redirect(url_for('admin'))
-    return render_template('dashboard.html', estagiarios=estagiarios, empresas=empresas)
+        return render_template('confirmacao_empresa.html', empresa=empresa, contato=contato, email=email)
+    return render_template('cadastro_empresa.html')
+
+@app.route('/painel')
+def painel():
+    if not session.get('logado'):
+        return redirect(url_for('login'))
+
+    dados = []
+    if os.path.isfile(CSV_FILE):
+        with open(CSV_FILE, newline='', encoding='utf-8') as csvfile:
+            reader = csv.reader(csvfile)
+            headers = next(reader)
+            dados = list(reader)
+    else:
+        headers = []
+
+        empresas = []
+    if os.path.isfile('cadastros_empresas.csv'):
+        with open('cadastros_empresas.csv', newline='', encoding='utf-8') as csvfile:
+            reader = csv.reader(csvfile)
+            empresas = list(reader)
+    return render_template('painel.html', headers=headers, dados=dados, empresas=empresas)
 
 @app.route('/logout')
 def logout():
-    session.pop('admin', None)
-    return redirect(url_for('home'))
-
-def send_email(subject, body):
-    msg = Message(subject, sender=os.getenv("MAIL_USERNAME"), recipients=["itpratiestagios@gmail.com"])
-    msg.body = body
-    mail.send(msg)
+    session.clear()
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    if not os.path.exists(UPLOAD_FOLDER):
-        os.makedirs(UPLOAD_FOLDER)
-import os
-port = int(os.environ.get("PORT", 5000))
-app.run(host='0.0.0.0', port=port)
+    app.run(debug=True)
