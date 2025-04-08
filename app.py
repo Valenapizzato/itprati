@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, redirect, url_for, session
 import os, csv
 
@@ -60,6 +59,15 @@ def dashboard():
 
     return render_template('dashboard.html', estagiarios=estagiarios, empresas=empresas)
 
+# 🔐 Novas rotas dos portais:
+@app.route('/portal-estudante')
+def portal_estudante():
+    return render_template('portal_estudante.html')
+
+@app.route('/portal-empresa')
+def portal_empresa():
+    return render_template('portal_empresa.html')
+
 @app.route('/logout')
 def logout():
     session.clear()
@@ -67,3 +75,4 @@ def logout():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000)
+
