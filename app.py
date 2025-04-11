@@ -10,6 +10,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = 'supersecret'
+
 # Configurações do Flask-Mail
 app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
 app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT'))
@@ -20,15 +21,12 @@ app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER')
 
 mail = Mail(app)
 
-
-from models import init_app, db, Estagiario, Empresa
+from models import init_app, db, Estagiario, Empresa, Candidatura
 init_app(app)
 
 @app.route('/')
 def index():
     return render_template('index.html')
-
-from werkzeug.security import generate_password_hash
 
 @app.route('/formulario-estagiario', methods=['GET', 'POST'])
 def formulario_estagiario():
@@ -36,12 +34,10 @@ def formulario_estagiario():
         dados = request.form.to_dict()
         senha_hash = generate_password_hash(dados.get('senha'))
 
-        # Processar soft_skills (0 a 10)
         soft_skills = "; ".join([
             f"{i}: {request.form.get(f'soft_{i}', '0')}" for i in range(20)
         ])
 
-        # Processar checkboxes de formato
         formatos = request.form.getlist("formato_trabalho")
         formato_trabalho = ", ".join(formatos)
 
@@ -68,6 +64,7 @@ def formulario_estagiario():
         db.session.commit()
         return render_template('confirmacao.html')
     return render_template('formulario_estagiario.html')
+
 @app.route('/formulario-empresa', methods=['GET', 'POST'])
 def formulario_empresa():
     if request.method == 'POST':
@@ -94,7 +91,6 @@ def formulario_empresa():
         return render_template('confirmacao_empresa.html')
     return render_template('form_empresa.html')
 
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -115,7 +111,6 @@ def dashboard():
 
     return render_template('dashboard.html', estagiarios=estagiarios, empresas=empresas)
 
-# 🔐 Novas rotas dos portais:
 @app.route('/portal-estudante')
 def portal_estudante():
     return render_template('portal_estudante.html')
@@ -127,8 +122,11 @@ def portal_empresa():
 @app.route('/login-estudante', methods=['GET', 'POST'])
 def login_estudante():
     if request.method == 'POST':
-        email = request.form['email']
-        senha = request.form['senha']
+        email = request.form.get('email', '').strip()
+        senha = request.form.get('senha', '')
+
+        if not email or '@' not in email:
+            return render_template('login_estudante.html', erro='Email inválido.')
 
         estagiario = Estagiario.query.filter_by(email=email).first()
         if estagiario and check_password_hash(estagiario.senha, senha):
@@ -161,8 +159,6 @@ def login_estudante():
 
     return render_template('login_estudante.html')
 
-
-
 @app.route('/login-empresa', methods=['GET', 'POST'])
 def login_empresa():
     if request.method == 'POST':
@@ -171,8 +167,6 @@ def login_empresa():
 
         empresa = Empresa.query.filter_by(email=email).first()
         if empresa and check_password_hash(empresa.senha, senha):
-            from models import Candidatura, Estagiario
-
             candidaturas = Candidatura.query.filter_by(empresa_id=empresa.id).all()
             estagiarios = [Estagiario.query.get(c.estagiario_id) for c in candidaturas]
 
@@ -195,8 +189,6 @@ def login_empresa():
             return render_template('login_empresa.html', erro='Email ou senha incorretos.')
     return render_template('login_empresa.html')
 
-from flask_mail import Message
-
 @app.route('/candidatar/<int:id_empresa>', methods=['POST'])
 def candidatar(id_empresa):
     if 'estudante_email' not in session:
@@ -208,12 +200,10 @@ def candidatar(id_empresa):
     if not estagiario or not empresa:
         return "Estagiário ou empresa não encontrados", 404
 
-    from models import Candidatura
     nova = Candidatura(estagiario_id=estagiario.id, empresa_id=empresa.id)
     db.session.add(nova)
     db.session.commit()
 
-    # Enviar e-mail de notificação
     msg = Message(
         subject="Novo candidato para sua vaga no ITpraTI!",
         recipients=[empresa.email],
@@ -252,6 +242,7 @@ def editar_estudante():
         return redirect(url_for('login_estudante'))
 
     return render_template('editar_estudante.html', est=est)
+
 @app.route('/editar-empresa', methods=['GET', 'POST'])
 def editar_empresa():
     email = session.get('empresa_email')
@@ -275,7 +266,6 @@ def editar_empresa():
         return redirect(url_for('login_empresa'))
 
     return render_template('editar_empresa.html', emp=emp)
-
 
 @app.route('/logout')
 def logout():
