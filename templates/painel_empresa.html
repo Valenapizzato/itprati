@@ -1,4 +1,3 @@
-<!-- templates/painel_empresa.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -14,16 +13,27 @@
     <a href="/logout">Sair</a>
   </nav>
 </header>
+
 <div class="form-container">
   <h2>Bem-vindo, {{ empresa }}</h2>
+
+  <h3>Dados da Empresa</h3>
   <p><strong>Email:</strong> {{ email }}</p>
   <p><strong>Responsável:</strong> {{ responsavel }}</p>
+  <p><strong>CNPJ:</strong> {{ cnpj }}</p>
+  <p><strong>Telefone:</strong> {{ telefone }}</p>
+  <p><strong>Endereço:</strong> {{ endereco }}</p>
+  <p><strong>Áreas de interesse:</strong> {{ areas_interesse }}</p>
+  <p><strong>Requisitos:</strong> {{ requisitos }}</p>
+  <p><strong>Tipo de contrato/benefícios:</strong> {{ beneficios }}</p>
+  <p><strong>Cursos/capacidades exigidas:</strong> {{ cursos_exigidos }}</p>
+  <p><strong>Modelo de prestação de serviço:</strong> {{ modelo_servico }}</p>
 
-  <h3>Estagiários Inscritos</h3>
-  <ul>
-    <li><strong>Ana Silva</strong> - Desenvolvimento Web<br>Status: <select><option>Em análise</option><option>Entrevista</option><option>Contratado</option></select></li>
-    <li><strong>João Martins</strong> - Banco de Dados<br>Status: <select><option>Em análise</option><option>Entrevista</option><option>Contratado</option></select></li>
-  </ul>
+  <a href="/editar-empresa" class="btn">Editar dados</a>
 </div>
+
+<footer>
+  <p>© 2025 ITpraTI. Conectando futuros profissionais de tecnologia.</p>
+</footer>
 </body>
 </html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Perfil</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="navbar">
+  <h1 class="logo">ITpraTI</h1>
+  <nav>
+    <a href="/">Início</a>
+    <a href="/logout">Sair</a>
+  </nav>
+</header>
+
+<div class="form-container">
+  <h1>Editar Perfil do Estudante</h1>
+  <form method="post">
+    <label>Nome:</label><input type="text" name="nome" value="{{ est.nome }}" required>
+    <label>Email:</label><input type="email" name="email" value="{{ est.email }}" required>
+    <label>Curso:</label><input type="text" name="curso" value="{{ est.curso }}">
+    <label>Instituição:</label><input type="text" name="instituicao" value="{{ est.instituicao }}">
+    <label>Telefone:</label><input type="text" name="telefone" value="{{ est.telefone }}">
+    <label>Cidade/Estado:</label><input type="text" name="cidade_estado" value="{{ est.cidade_estado }}">
+    <label>GitHub:</label><input type="url" name="github" value="{{ est.github }}">
+    <label>Área de Interesse:</label><input type="text" name="area_interesse" value="{{ est.area_interesse }}">
+    <label>Formato de trabalho:</label><input type="text" name="formato_trabalho" value="{{ est.formato_trabalho }}">
+    <label>Quer consultoria?</label><input type="text" name="quer_consultoria" value="{{ est.quer_consultoria }}">
+    <label>Experiências:</label><textarea name="experiencias">{{ est.experiencias }}</textarea>
+    <input type="submit" value="Salvar">
+  </form>
+</div>
+
+<footer>© 2025 ITpraTI</footer>
+</body>
+</html>
+
