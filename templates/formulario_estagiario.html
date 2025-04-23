@@ -18,7 +18,7 @@
 
 <div class="form-container">
     <h1>Cadastro de Estagiário</h1>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <label>Nome completo:</label><input type="text" name="nome" required>
         <label>Data de nascimento:</label><input type="date" name="data_nascimento" required>
         <label>Email:</label><input type="email" name="email" required>
@@ -28,18 +28,26 @@
         <label>Curso:</label><input type="text" name="curso">
         <label>Instituição de ensino:</label><input type="text" name="instituicao">
         <label>Disponibilidade de horário:</label><input type="text" name="disponibilidade">
-        <label>GitHub ou portfólio:</label><input type="url" name="github">
+        <label>Link do GitHub ou portfólio (opcional):</label><input type="url" name="github">
         <label>Habilidades técnicas:</label><input type="text" name="habilidades">
         <label>Área de interesse:</label><input type="text" name="area_interesse">
-        <label>Experiências prévias:</label><textarea name="experiencias"></textarea>
+        <label>Experiências prévias:</label><textarea name="experiencias" rows="3"></textarea>
 
-        <h2>Soft Skills (0 a 10):</h2>
+        <h3>Soft Skills (0 a 10)</h3>
+        {% set softskills = [
+            'Comunicação', 'Trabalho em equipe', 'Proatividade', 'Empatia',
+            'Flexibilidade', 'Criatividade', 'Gestão de tempo', 'Resolução de problemas',
+            'Pensamento crítico', 'Organização', 'Autonomia', 'Responsabilidade',
+            'Ética', 'Liderança', 'Tomada de decisão', 'Aprendizado contínuo',
+            'Relacionamento interpessoal', 'Foco em resultados', 'Capacidade de adaptação', 'Iniciativa'
+        ] %}
         {% for i in range(20) %}
-        <label>Skill {{ i+1 }}:</label>
-        <input type="range" min="0" max="10" value="0" name="soft_{{ i }}"><br>
+            <label>{{ softskills[i] }}:</label>
+            <input type="range" min="0" max="10" value="0" name="soft_{{ i }}"><br>
         {% endfor %}
 
         <label>Endereço residencial:</label><input type="text" name="endereco">
+
         <label>Formato de trabalho:</label><br>
         <input type="checkbox" name="formato_trabalho" value="Remoto"> Remoto
         <input type="checkbox" name="formato_trabalho" value="Híbrido"> Híbrido
@@ -49,7 +57,9 @@
         <input type="radio" name="quer_consultoria" value="Sim"> Sim
         <input type="radio" name="quer_consultoria" value="Não"> Não<br>
 
-        <input type="submit" value="Enviar">
+        <label>Upload de currículo (opcional):</label><input type="file" name="curriculo"><br>
+
+        <input type="submit" value="Enviar" class="btn">
     </form>
 </div>
 
