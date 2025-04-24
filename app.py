@@ -266,6 +266,11 @@ def editar_empresa():
         return redirect(url_for('login_empresa'))
 
     return render_template('editar_empresa.html', emp=emp)
+@app.route('/ppa/<int:id_estagiario>')
+def ppa_estagiario(id_estagiario):
+    est = Estagiario.query.get_or_404(id_estagiario)
+    return render_template('ppa.estagiario.html', est=est)
+
 
 @app.route('/logout')
 def logout():
