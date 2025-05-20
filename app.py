@@ -133,7 +133,7 @@ def login_estudante():
         if estagiario and check_password_hash(estagiario.senha, senha):
             try:
                 session['estudante_email'] = estagiario.email
-                candidaturas = Candidatura.query.filter_by(estagiario_id=estagiario.id).all()
+candidaturas = Candidatura.query.filter_by(estudante_id=estagiario.id).all()
                 qtd_candidaturas = len(candidaturas)
 
                 return render_template(
