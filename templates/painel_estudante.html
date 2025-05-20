@@ -15,8 +15,34 @@
 </header>
 
 <div class="form-container">
-  <h2>Olá, {{ nome }}</h2>
+ <h2>Olá, {{ nome }}</h2>
 <p style="margin-top: -10px;"><em>Você já se candidatou a {{ qtd_candidaturas }} empresa{{ '' if qtd_candidaturas == 1 else 's' }}.</em></p>
+
+<section class="progresso">
+  <h3 style="margin-top: 10px;">Seu Progresso</h3>
+  <div class="progress-container">
+    <div class="progress-step completed">Estagiário</div>
+    <div class="progress-line"></div>
+    <div class="progress-step">Júnior</div>
+    <div class="progress-line"></div>
+    <div class="progress-step">Sênior</div>
+  </div>
+</section>
+<section class="testes">
+  <h3 style="margin-top: 30px;">Desafios Técnicos</h3>
+  <div class="card-testes">
+    <div class="teste">
+      <h4>Desafio HTML/CSS</h4>
+      <p>Monte uma landing page simples com responsividade.</p>
+      <button class="btn">Iniciar</button>
+    </div>
+    <div class="teste">
+      <h4>Desafio Python</h4>
+      <p>Crie um script que leia e organize dados de um CSV.</p>
+      <button class="btn">Iniciar</button>
+    </div>
+  </div>
+</section>
 
   <h3>Seus Dados</h3>
   <p><strong>Email:</strong> {{ email }}</p>
