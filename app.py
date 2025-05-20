@@ -282,3 +282,19 @@ def logout():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000)
+from flask import flash
+
+@app.route('/contato', methods=['GET', 'POST'])
+def contato():
+    if request.method == 'POST':
+        nome = request.form['nome']
+        email = request.form['email']
+        mensagem = request.form['mensagem']
+        # Aqui você pode futuramente integrar com email ou salvar no banco
+        flash('Mensagem enviada com sucesso!')
+        return redirect('/contato')
+    return render_template('contato.html')
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')
+

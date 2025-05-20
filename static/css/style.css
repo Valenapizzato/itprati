@@ -61,3 +61,98 @@ footer { text-align: center; padding: 1rem; background-color: #f2f2f2; font-size
   cursor: pointer;
   margin-top: 10px;
 }
+.filtros {
+  background: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.filtros form {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.filtros label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.filtros button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.contato, .faq {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+}
+
+.contato form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contato input, .contato textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contato button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.faq h4 {
+  margin-top: 15px;
+  font-weight: bold;
+}
+.blog {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.posts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.post {
+  width: 100%;
+  max-width: 300px;
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.post img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.post h3 {
+  margin-top: 10px;
+}
+
+.post a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+}
