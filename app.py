@@ -130,33 +130,34 @@ def login_estudante():
 
         estagiario = Estagiario.query.filter_by(email=email).first()
 
-        if estagiario and check_password_hash(estagiario.senha, senha):
-            try:
-                session['estudante_email'] = estagiario.email
-candidaturas = Candidatura.query.filter_by(estudante_id=estagiario.id).all()
-                qtd_candidaturas = len(candidaturas)
+       if estagiario and check_password_hash(estagiario.senha, senha):
+    try:
+        session['estudante_email'] = estagiario.email
+        candidaturas = Candidatura.query.filter_by(estudante_id=estagiario.id).all()
+        qtd_candidaturas = len(candidaturas)
 
-                return render_template(
-                    'painel_estudante.html',
-                    nome=estagiario.nome or '',
-                    email=estagiario.email or '',
-                    curso=estagiario.curso or '',
-                    instituicao=estagiario.instituicao or '',
-                    telefone=estagiario.telefone or '',
-                    cidade=estagiario.cidade_estado or '',
-                    github=estagiario.github or '',
-                    habilidades=estagiario.habilidades or '',
-                    area_interesse=estagiario.area_interesse or '',
-                    disponibilidade=estagiario.disponibilidade or '',
-                    experiencias=estagiario.experiencias or '',
-                    formato_trabalho=estagiario.formato_trabalho or '',
-                    quer_consultoria=estagiario.quer_consultoria or '',
-                    soft_skills=estagiario.soft_skills or '',
-                    empresas=Empresa.query.all(),
-                    qtd_candidaturas=qtd_candidaturas
-                )
-            except Exception as e:
-                return f"Erro ao carregar painel do estudante: {e}", 500
+        return render_template(
+            'painel_estudante.html',
+            nome=estagiario.nome or '',
+            email=estagiario.email or '',
+            curso=estagiario.curso or '',
+            instituicao=estagiario.instituicao or '',
+            telefone=estagiario.telefone or '',
+            cidade=estagiario.cidade_estado or '',
+            github=estagiario.github or '',
+            habilidades=estagiario.habilidades or '',
+            area_interesse=estagiario.area_interesse or '',
+            disponibilidade=estagiario.disponibilidade or '',
+            experiencias=estagiario.experiencias or '',
+            formato_trabalho=estagiario.formato_trabalho or '',
+            quer_consultoria=estagiario.quer_consultoria or '',
+            soft_skills=estagiario.soft_skills or '',
+            empresas=Empresa.query.all(),
+            qtd_candidaturas=qtd_candidaturas
+        )
+    except Exception as e:
+        return f"Erro ao carregar painel do estudante: {e}", 500
+
         else:
             return render_template('login_estudante.html', erro='Email ou senha incorretos.')
 
