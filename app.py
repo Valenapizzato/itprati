@@ -1,6 +1,6 @@
 from flask_mail import Mail, Message
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
@@ -105,10 +105,8 @@ def login():
 def dashboard():
     if not session.get('logado'):
         return redirect(url_for('login'))
-
     estagiarios = Estagiario.query.all()
     empresas = Empresa.query.all()
-
     return render_template('dashboard.html', estagiarios=estagiarios, empresas=empresas)
 
 @app.route('/portal-estudante')
@@ -130,37 +128,35 @@ def login_estudante():
 
         estagiario = Estagiario.query.filter_by(email=email).first()
 
-       if estagiario and check_password_hash(estagiario.senha, senha):
-    try:
-        session['estudante_email'] = estagiario.email
-        candidaturas = Candidatura.query.filter_by(estudante_id=estagiario.id).all()
-        qtd_candidaturas = len(candidaturas)
+        if estagiario and check_password_hash(estagiario.senha, senha):
+            try:
+                session['estudante_email'] = estagiario.email
+                candidaturas = Candidatura.query.filter_by(estudante_id=estagiario.id).all()
+                qtd_candidaturas = len(candidaturas)
 
-        return render_template(
-            'painel_estudante.html',
-            nome=estagiario.nome or '',
-            email=estagiario.email or '',
-            curso=estagiario.curso or '',
-            instituicao=estagiario.instituicao or '',
-            telefone=estagiario.telefone or '',
-            cidade=estagiario.cidade_estado or '',
-            github=estagiario.github or '',
-            habilidades=estagiario.habilidades or '',
-            area_interesse=estagiario.area_interesse or '',
-            disponibilidade=estagiario.disponibilidade or '',
-            experiencias=estagiario.experiencias or '',
-            formato_trabalho=estagiario.formato_trabalho or '',
-            quer_consultoria=estagiario.quer_consultoria or '',
-            soft_skills=estagiario.soft_skills or '',
-            empresas=Empresa.query.all(),
-            qtd_candidaturas=qtd_candidaturas
-        )
-    except Exception as e:
-        return f"Erro ao carregar painel do estudante: {e}", 500
-
+                return render_template(
+                    'painel_estudante.html',
+                    nome=estagiario.nome or '',
+                    email=estagiario.email or '',
+                    curso=estagiario.curso or '',
+                    instituicao=estagiario.instituicao or '',
+                    telefone=estagiario.telefone or '',
+                    cidade=estagiario.cidade_estado or '',
+                    github=estagiario.github or '',
+                    habilidades=estagiario.habilidades or '',
+                    area_interesse=estagiario.area_interesse or '',
+                    disponibilidade=estagiario.disponibilidade or '',
+                    experiencias=estagiario.experiencias or '',
+                    formato_trabalho=estagiario.formato_trabalho or '',
+                    quer_consultoria=estagiario.quer_consultoria or '',
+                    soft_skills=estagiario.soft_skills or '',
+                    empresas=Empresa.query.all(),
+                    qtd_candidaturas=qtd_candidaturas
+                )
+            except Exception as e:
+                return f"Erro ao carregar painel do estudante: {e}", 500
         else:
             return render_template('login_estudante.html', erro='Email ou senha incorretos.')
-
     return render_template('login_estudante.html')
 
 @app.route('/login-empresa', methods=['GET', 'POST'])
@@ -172,7 +168,7 @@ def login_empresa():
         empresa = Empresa.query.filter_by(email=email).first()
         if empresa and check_password_hash(empresa.senha, senha):
             candidaturas = Candidatura.query.filter_by(empresa_id=empresa.id).all()
-            estagiarios = [Estagiario.query.get(c.estagiario_id) for c in candidaturas]
+            estagiarios = [Estagiario.query.get(c.estudante_id) for c in candidaturas]
 
             return render_template(
                 'painel_empresa.html',
@@ -204,7 +200,7 @@ def candidatar(id_empresa):
     if not estagiario or not empresa:
         return "Estagiário ou empresa não encontrados", 404
 
-    nova = Candidatura(estagiario_id=estagiario.id, empresa_id=empresa.id)
+    nova = Candidatura(estudante_id=estagiario.id, empresa_id=empresa.id)
     db.session.add(nova)
     db.session.commit()
 
@@ -270,20 +266,16 @@ def editar_empresa():
         return redirect(url_for('login_empresa'))
 
     return render_template('editar_empresa.html', emp=emp)
+
 @app.route('/ppa/<int:id_estagiario>')
 def ppa_estagiario(id_estagiario):
     est = Estagiario.query.get_or_404(id_estagiario)
     return render_template('ppa.estagiario.html', est=est)
 
-
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('login'))
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
-from flask import flash
 
 @app.route('/contato', methods=['GET', 'POST'])
 def contato():
@@ -291,11 +283,10 @@ def contato():
         nome = request.form['nome']
         email = request.form['email']
         mensagem = request.form['mensagem']
-        # Aqui você pode futuramente integrar com email ou salvar no banco
         flash('Mensagem enviada com sucesso!')
         return redirect('/contato')
     return render_template('contato.html')
+
 @app.route('/blog')
 def blog():
     return render_template('blog.html')
-
